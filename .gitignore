@@ -1,4 +1,1 @@
-out
-war/WEB-INF/classes
-.gwt
-gwt-unitCache
+target
