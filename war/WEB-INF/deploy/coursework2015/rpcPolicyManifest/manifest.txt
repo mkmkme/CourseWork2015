@@ -1,2 +1,0 @@
-# Module coursework2015
-# RPC service class, partial path of RPC policy file

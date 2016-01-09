@@ -1,6 +1,4 @@
-Здесь будет курсовая
+appengine-skeleton
+=============================
 
-Полезные ссылки:
-1. [Создание GAE-приложения](https://cloud.google.com/appengine/docs/java/)
-2. [Загрузка GWT](http://www.gwtproject.org/download.html)
-3. [Инструкция по настройке GWT](http://www.gwtproject.org/gettingstarted.html)
+This is a generated application from the appengine-skeleton archetype.
