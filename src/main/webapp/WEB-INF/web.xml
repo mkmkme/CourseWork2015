@@ -4,11 +4,28 @@
         <servlet-name>test</servlet-name>
         <servlet-class>ru.reverendhomer.coursework2015.TestServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>test2</servlet-name>
+        <jsp-file>test.jsp</jsp-file>
+    </servlet>
+    <servlet>
+        <servlet-name>weather</servlet-name>
+        <servlet-class>ru.reverendhomer.coursework2015.WeatherInputServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>test</servlet-name>
         <url-pattern>/guestbook</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>test2</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>weather</servlet-name>
+        <url-pattern>/weather</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>test.jsp</welcome-file>
     </welcome-file-list>
+
 </web-app>
