@@ -6,7 +6,7 @@ function showLocation(position) {
 }
 
 function errorHandler(err) {
-    if(err.code == 1) {
+    if (err.code == 1) {
         alert("Error: Access is denied!");
     } else if(err.code == 2) {
         alert("Error: Position is unavailable!");
@@ -15,9 +15,8 @@ function errorHandler(err) {
 
 function getLocation() {
     if (navigator.geolocation) {
-        // timeout at 60000 milliseconds (60 seconds)
         var options = {
-            timeout: 60000
+            timeout: 60000 // 60000 ms (60 sec) timeout
         };
         navigator.geolocation.getCurrentPosition(showLocation, errorHandler, options);
     } else {
@@ -25,4 +24,4 @@ function getLocation() {
     }
 }
 
-window.onload = getLocation;
+window.onload = getLocation;    // Get coordinates on page load
