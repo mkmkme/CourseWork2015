@@ -13,9 +13,25 @@
 
 <body>
 <p>THIS IS WEATHER SERVLET lel</p>
-<p id="latitude_p"></p>
-<p id="longitude_p"></p>
 
+<form onsubmit="return checkWeather();" action="/weatherSubmit" method="get">
+    <div>
+        Latitude:
+        <input type="text" id="latitudeForm" name="latitude" autocomplete="off"/>
+    </div>
+    <div>
+        Longitude:
+        <input type="text" id="longitudeForm" name="longitude" autocomplete="off"/>
+    </div>
+    <div>
+        Temperature:
+        <input type="text" id="weatherForm" name="weather" autocomplete="off"/>
+    </div>
+    <div>
+        <input type="submit" value="Send"/>
+    </div>
+</form>
+<p id="errorString"></p>
 
 </body>
 </html>
