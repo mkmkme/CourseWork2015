@@ -36,12 +36,12 @@ public class WeatherInputServlet extends HttpServlet {
         resp.setContentType("text/plain");
         resp.getWriter().println("Hi, welcome to submit GET!");
 
-        printParams(req, resp);
+        //printParams(req, resp);
 
         String lat = req.getParameter("latitude");
         String lon = req.getParameter("longitude");
         String w = req.getParameter("weather");
-        resp.getWriter().println("Lat: " + lat + "\nLon: " + lon + "\nWeather: " + w);
+        resp.getWriter().println("Your parameters:\nLat: " + lat + "\nLon: " + lon + "\nWeather: " + w);
 
     }
 
