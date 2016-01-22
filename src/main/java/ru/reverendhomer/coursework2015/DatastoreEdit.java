@@ -15,7 +15,8 @@ public class DatastoreEdit {
     //initialization datastore by innitial values and separation the map on the sectors
     public void initializeDatastore() {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        double weather = 0;
+        //double weather = 0;
+        Weather weather = new Weather(2.0);
         for(float lat = -90.0f; lat <= 90.0f; lat += 0.5f) {
             for(float lon = -180.0f; lon <= 180.0f; ) {
 
@@ -23,7 +24,7 @@ public class DatastoreEdit {
                 ent.setProperty("location", new GeoPt(lat, lon));
                 //ent.setProperty("latitude", String.valueOf(lat));
                 //ent.setProperty("longitude", String.valueOf(lon));
-                ent.setProperty("weather", weather);
+                ent.setProperty("weather", weather.getTemperature(lat));
                 datastore.put(ent);
 
                 if (lat <= -70.0f || lat >= 70.0f) {
