@@ -1,14 +1,19 @@
+@font-face {
+    font-family: "Terminator Real NFI";
+    src: url(fonts/terminator.ttf) format("truetype");
+}
+
 body {
-    font-family: PT Sans;
+    font-family: "Terminator Real NFI", "PT Sans", "Verdana";
     background-color: #AAAAAA;
 }
 
 .form-container {
-	width: 300px;
+	width: 400px;
 	margin-left: 50px;
     margin-top: 50px;
     padding: 5px 50px 20px 50px;
-	height: 180px;
+	height: 360px;
 	background-color: #EAEAEA;
 	border-style: groove;
 	border-color: #D4D4D4;
@@ -22,6 +27,11 @@ body {
 	margin-bottom: 16px;
 }
 
+.form-img {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+}
+
 .right-float {
 	float: right;
 	padding-right: 30px;
@@ -29,7 +39,7 @@ body {
 
 .submit-button {
 	float: left;
-	width: 400px;
+	width: 500px;
 	padding: 15px 0px 15px 0px;
 	margin: 3px 0px 15px -50px;
 	border: none;
