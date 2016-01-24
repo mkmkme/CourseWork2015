@@ -32,7 +32,7 @@
 				<input class="submit-button" type="submit" value="SEND"/>
 			</div>
 		</form>
-		<p id="errorString"></p>
+		<p id="statusString"></p>
 	</div>
 </body>
 </html>

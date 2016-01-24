@@ -29,33 +29,36 @@ function getLocation() {
 }
 
 function checkWeather() {
-    var errorStr = "The following input is FUCKING INCORRECT:<br>";
+    var invalidValuesList = "<ul>";
 
     var fail = false;
     var latitudeStr = this.latitudeForm.value;
     var lat = parseFloat(latitudeStr);
     if (!latitudeStr || isNaN(latitudeStr) || lat > 90.0 || lat < -90.0) {
-        errorStr += "* Latitude<br>";
+        invalidValuesList += "<li>Latitude</li>";
         fail = true;
     }
     var longitudeStr = this.longitudeForm.value;
     var lon = parseFloat(longitudeStr);
     if (!longitudeStr || isNaN(longitudeStr) || lon > 180.0 || lon < -180.0) {
-        errorStr += "* Longitude<br>";
+        invalidValuesList += "<li>Longitude</li>";
         fail = true;
     }
     var weatherStr = this.weatherForm.value;
     var w = parseFloat(weatherStr);
     if (!weatherStr || isNaN(weatherStr) || w > 100.0 || w < -100.0) {
-        errorStr += "* Temperature<br>";
+        invalidValuesList += "<li>Temperature</li>";
         fail = true;
     }
+    invalidValuesList += "</ul>";
     if (fail) {
-        document.getElementById('errorString').innerHTML = "Sorry Mario!<br>" + errorStr;
+        var errorMsg = "F**K YOU ASSHOLE!<br>";
+        errorMsg += "GET BACK AND RETURN WITH THIS CORRECT VALUES:<br>";
+        document.getElementById('statusString').innerHTML = errorMsg + invalidValuesList;
         return false;
 
     } else {
-        document.getElementById('errorString').innerHTML = "Yeeep! It's aaaaaall right!";
+        document.getElementById('statusString').innerHTML = "Yeeep! It's aaaaaall right!";
         return true;
     }
 }
