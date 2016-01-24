@@ -13,8 +13,8 @@
 
 <body>
 	<div class="form-container">
-		<p class="form-name">WEATHER SERVLET lel</p>
-
+		<p class="form-name">I need your latitude, your longitude and your temperature</p>
+        <img src="img/schwarz.jpg" class="form-img"></img>
 		<form onsubmit="return checkWeather();" action="/weatherSubmit" method="get">
 			<div class="form-raw">
 				<label for="latitudeForm">Latitude: </label>
