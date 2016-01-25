@@ -13,4 +13,12 @@
 <body onload="initMap()">
     <div id="map"></div>
 </body>
+
+<input type="text" id="lat"/>
+<input type="text" id="lon"/>
+<input type="text" id="radius"/>
+<input type="text" id="color"/>
+<input type="text" id="fillColor"/>
+<input type="button" onclick="testMap()" value="I NEED SARAH CONNOR">
+
 </html>
