@@ -5,6 +5,10 @@
         <jsp-file>weather.jsp</jsp-file>
     </servlet>
     <servlet>
+        <servlet-name>map</servlet-name>
+        <jsp-file>map.jsp</jsp-file>
+    </servlet>
+    <servlet>
         <servlet-name>weather-input</servlet-name>
         <servlet-class>ru.reverendhomer.coursework2015.WeatherInputServlet</servlet-class>
     </servlet>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>weather-input</servlet-name>
         <url-pattern>/weatherSubmit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>map</servlet-name>
+        <url-pattern>/map</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>weather.jsp</welcome-file>

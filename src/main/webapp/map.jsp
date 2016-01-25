@@ -4,8 +4,13 @@
 <html>
 <head>
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/map.css"/>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/leaflet.css"/>
+    <script type="text/javascript" src="javascript/leaflet.js"></script>
+    <script type="text/javascript" src="javascript/map.js"></script>
 </head>
 
-<body>
+<body onload="initMap()">
+    <div id="map"></div>
 </body>
 </html>
