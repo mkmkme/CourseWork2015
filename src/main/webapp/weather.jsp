@@ -3,6 +3,7 @@
 
 <html>
 <head>
+    <title>WEATHERMINATOR!</title>
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/>
     <script type="text/javascript" src="/javascript/geoip.js"></script>
 </head>

@@ -9,11 +9,11 @@ body {
 }
 
 .form-container {
-	width: 400px;
+	width: 450px;
 	margin-left: 50px;
     margin-top: 50px;
     padding: 5px 50px 20px 50px;
-	height: 360px;
+	height: 420px;
 	background-color: #EAEAEA;
 	border-style: groove;
 	border-color: #D4D4D4;
@@ -30,6 +30,7 @@ body {
 .form-img {
     margin-bottom: 5px;
     padding-bottom: 5px;
+    padding-left: 65px;
 }
 
 .right-float {
@@ -39,8 +40,8 @@ body {
 
 .submit-button {
 	float: left;
-	width: 500px;
-	padding: 15px 0px 15px 0px;
+	width: 550px;
+	padding: 20px 0px 20px 0px;
 	margin: 3px 0px 15px -50px;
 	border: none;
 	background-color: #499EF3;
