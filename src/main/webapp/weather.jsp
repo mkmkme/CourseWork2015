@@ -1,8 +1,4 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page import="com.google.appengine.api.users.User" %>
-<%@ page import="com.google.appengine.api.users.UserService" %>
-<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
-<%@ page import="java.util.List" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
 <html>
@@ -14,7 +10,7 @@
 <body>
 	<div class="form-container">
 		<p class="form-name">I need your latitude, your longitude and your temperature</p>
-        <img src="img/schwarz.jpg" class="form-img"></img>
+        <img src="images/schwarz.jpg" class="form-img"></img>
 		<form onsubmit="return checkWeather();" action="/weatherSubmit" method="get">
 			<div class="form-raw">
 				<label for="latitudeForm">Latitude: </label>
@@ -32,7 +28,7 @@
 				<input class="submit-button" type="submit" value="SEND"/>
 			</div>
 		</form>
-		<p id="errorString"></p>
+		<p id="statusString"></p>
 	</div>
 </body>
 </html>
