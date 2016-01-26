@@ -43,6 +43,10 @@ public class WeatherInputServlet extends HttpServlet {
         String w = req.getParameter("weather");
         resp.getWriter().println("Your parameters:\nLat: " + lat + "\nLon: " + lon + "\nWeather: " + w);
 
+        DatastoreEdit data = new DatastoreEdit();
+        //data.initializeDatastore();
+        //data.createEntity(Float.parseFloat(lat), Float.parseFloat(lon), Double.parseDouble(w));
+        data.getPointInArea(resp.getWriter(), Float.parseFloat(lat), Float.parseFloat(lon));
     }
 
     @Override

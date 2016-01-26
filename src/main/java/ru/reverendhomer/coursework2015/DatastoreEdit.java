@@ -10,38 +10,64 @@ public class DatastoreEdit {
 
     //http://localhost:8080/_ah/admin - datastore viewer as administrator
 
+    private static final double radius = 60000; // radius value in meters
+
     //initialization datastore by innitial values and separation the map on the sectors
-    private void initializeDatastore() {
+    public void initializeDatastore() {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        int weather = 0;
-        for(double lat = -90.0; lat <= 90.0; lat += 0.5) {
-            for(double lon = -180.0; lon <= 180.0; ) {
+        //double weather = 0;
+        Weather weather = new Weather(2.0);
+        for(float lat = -90.0f; lat <= 90.0f; lat += 0.5f) {
+            for(float lon = -180.0f; lon <= 180.0f; ) {
 
                 Entity ent = new Entity("Weather");
-                ent.setProperty("latitude", String.valueOf(lat));
-                ent.setProperty("longitude", String.valueOf(lon));
-                ent.setProperty("weather", String.valueOf(weather));
+                ent.setProperty("location", new GeoPt(lat, lon));
+                //ent.setProperty("latitude", String.valueOf(lat));
+                //ent.setProperty("longitude", String.valueOf(lon));
+                ent.setProperty("weather", weather.getTemperature(lat));
                 datastore.put(ent);
 
-                if (lat <= -70.0 || lat >= 70.0) {
-                    lon += 3.0;
-                } else if (lat <= -50.0 || lat >= 50.0) {
-                    lon += 1.0;
-                } else if (lat <= -30.0 || lat >= 30.0) {
-                    lon += 0.6;
+                if (lat <= -70.0f || lat >= 70.0f) {
+                    lon += 3.0f;
+                } else if (lat <= -50.0f || lat >= 50.0f) {
+                    lon += 1.0f;
+                } else if (lat <= -30.0f || lat >= 30.0f) {
+                    lon += 0.6f;
                 } else {
-                    lon += 0.5;
+                    lon += 0.5f;
                 }
             }
         }
     }
 
+    public void getPointInArea(PrintWriter out, float latitude, float longitude, double radiusIn) {
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        GeoPt center = new GeoPt(latitude, longitude);
+        Query.Filter circe = new Query.StContainsFilter("location", new Query.GeoRegion.Circle(center, radiusIn));
+        Query query = new Query("Weather").setFilter(circe);
+
+        out.println("---Radius : " + radiusIn + "---");
+        PreparedQuery pq = datastore.prepare(query);
+        for(Entity results : pq.asIterable()) {
+            String location = results.getProperty("location").toString();
+            String weather = results.getProperty("weather").toString();
+            out.println("Location: " + location + "; Weather: " + weather + ";\n");
+        }
+        out.println("--------------------------------");
+    }
+
+    public void getPointInArea(PrintWriter out, float latitude, float longitude) {
+        getPointInArea(out, latitude, longitude, radius);
+    }
+
+
     //Create and put in datastore new entity "Weather" with latitude, longitude and weather
-    public void createEntity(String latitude, String longitude, String weather) {
+    public void createEntity(float latitude, float longitude, double weather) {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Entity entity = new Entity("Weather");
-        entity.setProperty("latitude", latitude);
-        entity.setProperty("longitude", longitude);
+        entity.setProperty("location", new GeoPt(latitude, longitude));
+        //entity.setProperty("latitude", latitude);
+        //entity.setProperty("longitude", longitude);
         entity.setProperty("weather", weather);
         datastore.put(entity);
     }
@@ -52,7 +78,7 @@ public class DatastoreEdit {
     }
 
     //Print all entity from datastore by dint of PrintWriter
-    private void datastorePrint(PrintWriter out, String lat, String lon, String w) {
+    private void datastorePrint(PrintWriter out) {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Query q = new Query();
         PreparedQuery p = datastore.prepare(q);
