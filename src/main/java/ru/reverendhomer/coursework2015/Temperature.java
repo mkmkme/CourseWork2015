@@ -1,17 +1,18 @@
 package ru.reverendhomer.coursework2015;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
-import java.util.Random;
+import java.util.*;
 
 /**
  * Created by Alex on 22.01.2016.
  */
-public class Weather {
+public class Temperature {
 
     private double sigma;
 
-    Weather (double sigma) {
+    Temperature() {
+    }
+
+    Temperature(double sigma) {
         this.sigma = sigma;
     }
 
@@ -72,4 +73,16 @@ public class Weather {
             return null;
         }
     }
+
+    public double averageTemperature (double prevTemperature, ArrayList<Double> temperaturesList) {
+        if(temperaturesList.size() == 0) {
+            return prevTemperature;
+        }
+        double sum = 0.0;
+        for (double temperature : temperaturesList) {
+            sum += temperature;
+        }
+        return sum / temperaturesList.size();
+    }
+
 }

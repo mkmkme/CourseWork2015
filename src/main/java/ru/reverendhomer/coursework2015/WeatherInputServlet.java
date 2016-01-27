@@ -1,5 +1,7 @@
 package ru.reverendhomer.coursework2015;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -32,21 +34,26 @@ public class WeatherInputServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest req, HttpServletResponse resp)
-            throws IOException {
+            throws IOException, ServletException {
+        /*
         resp.setContentType("text/plain");
         resp.getWriter().println("Hi, welcome to submit GET!");
-
         //printParams(req, resp);
-
+        */
+        resp.sendRedirect("/addPoint.jsp");
         String lat = req.getParameter("latitude");
         String lon = req.getParameter("longitude");
-        String w = req.getParameter("weather");
-        resp.getWriter().println("Your parameters:\nLat: " + lat + "\nLon: " + lon + "\nWeather: " + w);
+        String weather = req.getParameter("weather");
 
-        DatastoreEdit data = new DatastoreEdit();
+        //resp.getWriter().println("Your parameters:\nLat: " + lat + "\nLon: " + lon + "\nWeather: " + weather);
+        //RequestDispatcher view = req.getRequestDispatcher("http://localhost:8080/addPoint");
+        //view.forward(req, resp);
+
+        DatastoreWork data = new DatastoreWork();
         //data.initializeDatastore();
+        data.createEntity(Float.parseFloat(lat), Float.parseFloat(lon), Float.parseFloat(weather));
         //data.createEntity(Float.parseFloat(lat), Float.parseFloat(lon), Double.parseDouble(w));
-        data.getPointInArea(resp.getWriter(), Float.parseFloat(lat), Float.parseFloat(lon));
+        //data.getPointInArea(resp.getWriter(), Float.parseFloat(lat), Float.parseFloat(lon));
     }
 
     @Override
