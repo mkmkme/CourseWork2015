@@ -14,6 +14,8 @@ import java.util.Enumeration;
  */
 public class WeatherInputServlet extends HttpServlet {
 
+    private static final DatastoreWork data = new DatastoreWork();
+
     private void printParams(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
         out.println("There is all params:");
@@ -49,8 +51,11 @@ public class WeatherInputServlet extends HttpServlet {
         //RequestDispatcher view = req.getRequestDispatcher("http://localhost:8080/addPoint");
         //view.forward(req, resp);
 
-        DatastoreWork data = new DatastoreWork();
-        //data.initializeDatastore();
+        //DatastoreWork data = new DatastoreWork();
+        if (data.getSize() == 0) {
+            System.out.println("Start initialize Datastore.");
+            data.initializeDatastore();
+        }
         data.createEntity(Float.parseFloat(lat), Float.parseFloat(lon), Float.parseFloat(weather));
         //data.createEntity(Float.parseFloat(lat), Float.parseFloat(lon), Double.parseDouble(w));
         //data.getPointInArea(resp.getWriter(), Float.parseFloat(lat), Float.parseFloat(lon));

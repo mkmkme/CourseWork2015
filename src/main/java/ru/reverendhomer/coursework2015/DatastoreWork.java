@@ -18,6 +18,11 @@ public class DatastoreWork {
     //http://localhost:8080/_ah/admin - datastore viewer as administrator
 
     private static final double radius = 60000; // radius value in meters
+    private static int size;
+
+    DatastoreWork() {
+        size = getDatastoreSize();
+    }
 
     //initialization datastore by innitial values and separation the map on the sectors
     public void initializeDatastore() {
@@ -44,6 +49,7 @@ public class DatastoreWork {
                 }
             }
         }
+        size = getDatastoreSize();
     }
 
     public Iterable<Entity> getPointInArea(float latitude, float longitude, double radiusIn) {
@@ -91,7 +97,8 @@ public class DatastoreWork {
         task.add(taskOptions);*/
     }
 
-    private class CreateTask implements DeferredTask, Serializable {
+    /*
+    private class CreateTask implements DeferredTask {
 
         private float latitude;
         private float longitude;
@@ -120,6 +127,7 @@ public class DatastoreWork {
             System.out.println("New temperature add to list.");
         }
     }
+    */
 
     public void updateTemperatureFromList() {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -138,9 +146,13 @@ public class DatastoreWork {
         }
     }
 
-    public int getDatastoreSize() {
+    private int getDatastoreSize() {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         return datastore.prepare(new Query()).asList(FetchOptions.Builder.withDefaults()).size();
+    }
+
+    public int getSize() {
+        return size;
     }
 
     //Print all entity from datastore by dint of PrintWriter
