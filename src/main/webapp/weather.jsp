@@ -5,6 +5,9 @@
 <head>
     <title>WEATHERMINATOR!</title>
     <link type="text/css" rel="stylesheet" href="/stylesheets/main.css"/>
+    <link type="text/css" rel="stylesheet" href="/stylesheets/leaflet.css"/>
+    <script type="text/javascript" src="/javascript/leaflet.js"></script>
+    <script type="text/javascript" src="/javascript/geomap.js"></script>
     <script type="text/javascript" src="/javascript/geoip.js"></script>
 </head>
 
@@ -29,7 +32,10 @@
 				<input class="submit-button" type="submit" value="SEND"/>
 			</div>
 		</form>
-		<p id="statusString"></p>
 	</div>
+	<p id="statusString"></p>
+	<input class="submit-button" type="button" value="Show/Hide map" onclick="onMapBtnClicked()"/>
+	<div id="mainMap"></div>
+
 </body>
 </html>

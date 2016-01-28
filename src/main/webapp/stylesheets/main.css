@@ -8,6 +8,14 @@ body {
     background-color: #AAAAAA;
 }
 
+#mainMap {
+    height: 400px;
+    width:  600px;
+    cursor: crosshair;
+    clear: both;
+    visibility: hidden;
+}
+
 .form-container {
 	width: 450px;
 	margin-left: 50px;
@@ -46,7 +54,7 @@ body {
 	border: none;
 	background-color: #499EF3;
     color: #FFFFFF;
-    font-weight: bold;
+    font-family: "Terminator Real NFI";
 }
 
 .submit-button:hover  {
