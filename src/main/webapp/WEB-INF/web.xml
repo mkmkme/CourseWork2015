@@ -12,6 +12,10 @@
         <servlet-name>weather-input</servlet-name>
         <servlet-class>ru.reverendhomer.coursework2015.WeatherInputServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>updateData</servlet-name>
+        <servlet-class>ru.reverendhomer.coursework2015.UpdateData</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>weather</servlet-name>
         <url-pattern>/weather</url-pattern>
@@ -24,8 +28,20 @@
         <servlet-name>map</servlet-name>
         <url-pattern>/map</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>updateData</servlet-name>
+        <url-pattern>/updateData</url-pattern>
+    </servlet-mapping>
     <welcome-file-list>
         <welcome-file>weather.jsp</welcome-file>
     </welcome-file-list>
-
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>updateData</web-resource-name>
+            <url-pattern>/updateData</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
 </web-app>

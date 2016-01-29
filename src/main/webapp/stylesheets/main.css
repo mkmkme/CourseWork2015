@@ -9,11 +9,11 @@ body {
 }
 
 .form-container {
-	width: 400px;
+	width: 450px;
 	margin-left: 50px;
     margin-top: 50px;
     padding: 5px 50px 20px 50px;
-	height: 360px;
+	height: 420px;
 	background-color: #EAEAEA;
 	border-style: groove;
 	border-color: #D4D4D4;
@@ -30,24 +30,29 @@ body {
 .form-img {
     margin-bottom: 5px;
     padding-bottom: 5px;
-}
+	padding-left: 65px;
+	width: 320px;	height: 185px;}
 
 .right-float {
 	float: right;
 	padding-right: 30px;
 }
-
-.submit-button {
+.button {
 	float: left;
-	width: 500px;
-	padding: 15px 0px 15px 0px;
-	margin: 3px 0px 15px -50px;
+	width: 550px;
 	border: none;
 	background-color: #499EF3;
     color: #FFFFFF;
     font-weight: bold;
 }
-
+.submit-button {
+	padding: 20px 0px 15px 0px;
+	margin: 1px 0px 15px -50px;
+}
+.open-button {
+    padding: 20px 0px 15px 0px;
+    margin: 36px 0px 15px -50px;
+}
 .submit-button:hover  {
 	cursor: pointer;
 	cursor: hand;
