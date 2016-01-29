@@ -34,7 +34,7 @@
 		</form>
 	</div>
 	<p id="statusString"></p>
-	<input class="submit-button" type="button" value="Show/Hide map" onclick="onMapBtnClicked()"/>
+	<input class="button" type="button" value="Show/Hide map" onclick="onMapBtnClicked()"/>
 	<div id="mainMap"></div>
 
 </body>

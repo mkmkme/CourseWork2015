@@ -1,4 +1,4 @@
-appengine-skeleton
+Weather Server
 =============================
 
-This is a generated application from the appengine-skeleton archetype.
+Course Work for Math Modeling
