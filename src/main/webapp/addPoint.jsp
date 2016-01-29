@@ -12,9 +12,9 @@
 		    You can view the weather map.</p>
         <img src="images/schwarzAdd.jpg" class="form-img"></img>
 		<form action="http://localhost:8080/map">
-		    <p>Come with me if you want to live.</p>
+		    <p class="form-name">Come with me if you want to live.</p>
 			<div class="form-raw form-name">
-                <input class="submit-button" type="submit" value="Open map"/>
+                <input class="button open-button" type="submit" value="Open map"/>
             </div>
 		</form>
 	</div>

@@ -37,18 +37,22 @@ body {
 	float: right;
 	padding-right: 30px;
 }
-
-.submit-button {
+.button {
 	float: left;
 	width: 550px;
-	padding: 20px 0px 20px 0px;
-	margin: 3px 0px 15px -50px;
 	border: none;
 	background-color: #499EF3;
     color: #FFFFFF;
     font-weight: bold;
 }
-
+.submit-button {
+	padding: 20px 0px 15px 0px;
+	margin: 1px 0px 15px -50px;
+}
+.open-button {
+    padding: 20px 0px 15px 0px;
+    margin: 36px 0px 15px -50px;
+}
 .submit-button:hover  {
 	cursor: pointer;
 	cursor: hand;

@@ -97,19 +97,31 @@ public class DatastoreWork {
         task.add(taskOptions);*/
     }
 
-    /*
-    private class CreateTask implements DeferredTask {
+
+    private class WeatherPoint /* implements DeferredTask */{
 
         private float latitude;
         private float longitude;
         private double weather;
 
-        CreateTask(float latitude, float longitude, double weather) {
+        WeatherPoint(float latitude, float longitude, double weather) {
             this.latitude = latitude;
             this.longitude = longitude;
             this.weather = weather;
         }
 
+        public double getWeather() {
+            return weather;
+        }
+
+        public float getLatitude() {
+            return latitude;
+        }
+
+        public float getLongitude() {
+            return longitude;
+        }
+        /*
         @Override
         public void run() {
             DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -126,8 +138,8 @@ public class DatastoreWork {
             datastore.put(point);
             System.out.println("New temperature add to list.");
         }
+        */
     }
-    */
 
     public void updateTemperatureFromList() {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
@@ -144,6 +156,19 @@ public class DatastoreWork {
             result.setProperty("temperaturesList", new ArrayList<Double>());
             datastore.put(result);
         }
+    }
+
+    public ArrayList<WeatherPoint> getWeatherPointList() {
+        ArrayList<WeatherPoint> weatherPointsList = new ArrayList<>();
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        Query query = new Query("Weather");
+        PreparedQuery pq = datastore.prepare(query);
+        for (Entity result: pq.asList(FetchOptions.Builder.withDefaults())) {
+            GeoPt point = (GeoPt) result.getProperty("location");
+            double weather = (double) result.getProperty("previousTemperature");
+            weatherPointsList.add(new WeatherPoint(point.getLatitude(), point.getLongitude(), weather));
+        }
+        return weatherPointsList;
     }
 
     private int getDatastoreSize() {
