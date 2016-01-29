@@ -29,7 +29,7 @@
 				<input class="right-float" type="text" id="weatherForm" name="weather" autocomplete="off"/>
 			</div>
 			<div class="form-raw">
-				<input class="submit-button" type="submit" value="SEND"/>
+				<input class="button submit-button" type="submit" value="SEND"/>
 			</div>
 		</form>
 	</div>
