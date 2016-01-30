@@ -16,6 +16,10 @@
         <servlet-name>updateData</servlet-name>
         <servlet-class>ru.reverendhomer.coursework2015.UpdateData</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>javaScriptServlet</servlet-name>
+        <servlet-class>ru.reverendhomer.coursework2015.JavaScriptServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>weather</servlet-name>
         <url-pattern>/weather</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>updateData</servlet-name>
         <url-pattern>/updateData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>javaScriptServlet</servlet-name>
+        <url-pattern>/javaScriptServlet</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
         <welcome-file>weather.jsp</welcome-file>

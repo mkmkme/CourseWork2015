@@ -1,13 +1,8 @@
 package ru.reverendhomer.coursework2015;
 
 import com.google.appengine.api.datastore.*;
-import com.google.appengine.api.taskqueue.DeferredTask;
-import com.google.appengine.api.taskqueue.Queue;
-import com.google.appengine.api.taskqueue.QueueFactory;
-import com.google.appengine.api.taskqueue.TaskOptions;
 
 import java.io.PrintWriter;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -97,50 +92,6 @@ public class DatastoreWork {
         task.add(taskOptions);*/
     }
 
-
-    private class WeatherPoint /* implements DeferredTask */{
-
-        private float latitude;
-        private float longitude;
-        private double weather;
-
-        WeatherPoint(float latitude, float longitude, double weather) {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.weather = weather;
-        }
-
-        public double getWeather() {
-            return weather;
-        }
-
-        public float getLatitude() {
-            return latitude;
-        }
-
-        public float getLongitude() {
-            return longitude;
-        }
-        /*
-        @Override
-        public void run() {
-            DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-            Iterable<Entity> pointsInArea = getPointInArea(latitude, longitude);
-            Entity point = pointsInArea.iterator().next(); // Entity from "Weather" datastore
-            ArrayList<Double> weatherList = (ArrayList<Double>) point.getProperty("temperaturesList");
-            if (weatherList == null) {
-                weatherList = new ArrayList<Double>();
-            }
-            if(Math.abs(weather - ((double)point.getProperty("previousTemperature"))) <= 7.0) {
-                weatherList.add(weather);
-            }
-            point.setProperty("temperaturesList", weatherList);
-            datastore.put(point);
-            System.out.println("New temperature add to list.");
-        }
-        */
-    }
-
     public void updateTemperatureFromList() {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Query query = new Query("Weather");
@@ -158,12 +109,12 @@ public class DatastoreWork {
         }
     }
 
-    public ArrayList<WeatherPoint> getWeatherPointList() {
+    public static ArrayList<WeatherPoint> getWeatherPointList() {
         ArrayList<WeatherPoint> weatherPointsList = new ArrayList<>();
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
         Query query = new Query("Weather");
         PreparedQuery pq = datastore.prepare(query);
-        for (Entity result: pq.asList(FetchOptions.Builder.withDefaults())) {
+        for (Entity result: pq.asList(FetchOptions.Builder.withChunkSize(500))) {
             GeoPt point = (GeoPt) result.getProperty("location");
             double weather = (double) result.getProperty("previousTemperature");
             weatherPointsList.add(new WeatherPoint(point.getLatitude(), point.getLongitude(), weather));

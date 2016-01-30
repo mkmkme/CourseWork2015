@@ -11,7 +11,7 @@ function initMap() {
 
     //custom size for this example, and autoresize because map style has a percentage width
     heatmap = new L.TileLayer.WebGLHeatMap({size: 40000});
-
+    fillHeatMap();
     map.addLayer(heatmap);
 
 }
