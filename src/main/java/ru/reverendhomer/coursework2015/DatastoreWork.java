@@ -14,6 +14,7 @@ public class DatastoreWork {
 
     private static final double radius = 60000; // radius value in meters
     private static int size;
+    private static final double DOUBLE_NOVALUE = -9999.9999;
 
     DatastoreWork() {
         size = getDatastoreSize();
@@ -29,7 +30,8 @@ public class DatastoreWork {
 
                 Entity ent = new Entity("Weather");
                 ent.setProperty("location", new GeoPt(lat, lon));
-                ent.setProperty("previousTemperature", weather.getTemperature(lat));
+//                ent.setProperty("previousTemperature", weather.getTemperature(lat));
+                ent.setProperty("previousTemperature", DOUBLE_NOVALUE);
                 ent.setProperty("temperaturesList", new ArrayList<Double>());
                 datastore.put(ent);
 
@@ -81,7 +83,8 @@ public class DatastoreWork {
         if (weatherList == null) {
             weatherList = new ArrayList<Double>();
         }
-        if(Math.abs(weather - ((double)point.getProperty("previousTemperature"))) <= 7.0) {
+        double prev = (double) point.getProperty("previousTemperature");
+        if (prev == DOUBLE_NOVALUE || Math.abs(weather - prev) <= 7.0) {
             weatherList.add(weather);
         }
         point.setProperty("temperaturesList", weatherList);
@@ -97,7 +100,7 @@ public class DatastoreWork {
         Query query = new Query("Weather");
         PreparedQuery pq = datastore.prepare(query);
         Temperature temperature = new Temperature();
-        for (Entity result : pq.asList(FetchOptions.Builder.withDefaults())) {
+        for (Entity result : pq.asList(FetchOptions.Builder.withChunkSize(500))) {
             ArrayList<Double> weatherList = (ArrayList<Double>) result.getProperty("temperaturesList");
             if(weatherList == null) {
                 weatherList = new ArrayList<Double>();
@@ -120,6 +123,23 @@ public class DatastoreWork {
             weatherPointsList.add(new WeatherPoint(point.getLatitude(), point.getLongitude(), weather));
         }
         return weatherPointsList;
+    }
+
+    public static ArrayList<WeatherPoint> getActiveWeatherPointList() {
+        ArrayList<WeatherPoint> weatherPoints = new ArrayList<>();
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        Query.Filter filter = new Query.FilterPredicate(
+                "previousTemperature",
+                Query.FilterOperator.NOT_EQUAL,
+                DOUBLE_NOVALUE);
+        Query query = new Query("Weather").setFilter(filter);
+        PreparedQuery pq = datastore.prepare(query);
+        for (Entity result : pq.asList(FetchOptions.Builder.withChunkSize(500))) {
+            GeoPt point = (GeoPt) result.getProperty("location");
+            double prevTemp = (double) result.getProperty("previousTemperature");
+            weatherPoints.add(new WeatherPoint(point.getLatitude(), point.getLongitude(), prevTemp));
+        }
+        return weatherPoints;
     }
 
     private int getDatastoreSize() {

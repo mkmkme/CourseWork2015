@@ -23,7 +23,7 @@ public class JavaScriptServlet extends HttpServlet {
         PrintWriter out = resp.getWriter();
         StringBuilder sb = new StringBuilder();
         sb.append("var points = [\n");
-        List<WeatherPoint> wpl = DatastoreWork.getWeatherPointList();
+        List<WeatherPoint> wpl = DatastoreWork.getActiveWeatherPointList();
         for (WeatherPoint wp : wpl) {
             sb.append(String.format(Locale.US, "[%.6f, %.6f, %.2f],\n", wp.getLatitude(), wp.getLongitude(), celciumToFahrenheit(wp.getWeather())));
         }
