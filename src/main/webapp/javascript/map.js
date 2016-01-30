@@ -10,7 +10,7 @@ function initMap() {
     }).addTo(map);
 
     //custom size for this example, and autoresize because map style has a percentage width
-    heatmap = new L.TileLayer.WebGLHeatMap({size: 40000});
+    heatmap = new L.TileLayer.WebGLHeatMap({size: 80000});
     fillHeatMap();
     map.addLayer(heatmap);
 
