@@ -77,7 +77,7 @@ body {
 	cursor: hand;
 }
 .map-button {
-    margin: 0px 0px 0px 49px;
+    margin-left: 49px;
     border-style: groove;
     width: 556px;
     height: 51px;
