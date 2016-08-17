@@ -142,9 +142,27 @@ public class DatastoreWork {
         return weatherPoints;
     }
 
+    public static ArrayList<WeatherPoint> getPointListInArea(float latitude, float longitude, double radiusIn) {
+        ArrayList<WeatherPoint> wpl = new ArrayList<>();
+        DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+        GeoPt center = new GeoPt(latitude, longitude);
+        Query.Filter circle = new Query.StContainsFilter("location", new Query.GeoRegion.Circle(center, radiusIn));
+        Query.Filter activeFilter = new Query.FilterPredicate("previousTemperature", Query.FilterOperator.NOT_EQUAL, DOUBLE_NOVALUE);
+        Query query = new Query("Weather").setFilter(activeFilter).setFilter(circle);
+        PreparedQuery pq = datastore.prepare(query);
+        for (Entity result : pq.asList(FetchOptions.Builder.withChunkSize(500))) {
+            GeoPt point = (GeoPt) result.getProperty("location");
+            double prevTemp = (double) result.getProperty("previousTemperature");
+            if(point.getLatitude() <= 85.0) {
+                wpl.add(new WeatherPoint(point.getLatitude(), point.getLongitude(), prevTemp));
+            }
+        }
+        return wpl;
+    }
+
     private int getDatastoreSize() {
         DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
-        return datastore.prepare(new Query()).asList(FetchOptions.Builder.withDefaults()).size();
+        return datastore.prepare(new Query()).asList(FetchOptions.Builder.withChunkSize(500)).size();
     }
 
     public int getSize() {

@@ -9,15 +9,15 @@ import java.io.IOException;
 /**
  * Created by Alex on 27.01.2016.
  */
-public class UpdateData extends HttpServlet{
+public class UpdateData extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         DatastoreWork datastoreWork = new DatastoreWork();
         long time = System.currentTimeMillis();
-        System.out.println("Start update data.");
+        log("Start update data.");
         datastoreWork.updateTemperatureFromList();
-        System.out.println("End update data. Time : " + (System.currentTimeMillis() - time) + " millis.");
+        log("End update data. Time : " + (System.currentTimeMillis() - time) + " millis.");
     }
 
     @Override

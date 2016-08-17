@@ -10,7 +10,7 @@ function initMap() {
     }).addTo(map);
 
     //custom size for this example, and autoresize because map style has a percentage width
-    heatmap = new L.TileLayer.WebGLHeatMap({size: 80000});
+    heatmap = new L.TileLayer.WebGLHeatMap({size: 100000});
     fillHeatMap();
     map.addLayer(heatmap);
 
@@ -20,7 +20,7 @@ function fillMap(dataPoints) {
     // dataPoints is an array of arrays: [[lat, lng, intensity]...]
     for (var i = 0, len = dataPoints.length; i < len; i++) {
         var point = dataPoints[i];
-        heatmap.addDataPoint(point[0], point[1], point[2]);
+        heatmap.addDataPoint(point[0], point[1], point[2] + 15);
     }
 }
 

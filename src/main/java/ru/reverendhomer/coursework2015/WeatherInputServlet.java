@@ -52,7 +52,7 @@ public class WeatherInputServlet extends HttpServlet {
 
         //DatastoreWork data = new DatastoreWork();
         if (data.getSize() == 0) {
-            System.out.println("Start initialize Datastore.");
+            log("Start initialize Datastore.");
             data.initializeDatastore();
         }
         data.createEntity(Float.parseFloat(lat), Float.parseFloat(lon), Float.parseFloat(weather));

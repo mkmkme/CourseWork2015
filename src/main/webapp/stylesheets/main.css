@@ -10,10 +10,17 @@ body {
 
 #mainMap {
     height: 400px;
-    width:  600px;
+    width:  554px;
+    margin-left:50px;
     cursor: crosshair;
     clear: both;
     visibility: hidden;
+}
+
+#statusString {
+    width: 556px;
+    text-align: center;
+    margin-left: 50px;
 }
 
 .form-container {
@@ -26,6 +33,7 @@ body {
 	border-style: groove;
 	border-color: #D4D4D4;
 }
+
 
 .form-name {
 	text-align: center;
@@ -51,8 +59,6 @@ body {
 .button {
 	float: left;
 	width: 550px;
-	padding: 20px 0px 20px 0px;
-	margin: 3px 0px 15px -50px;
 	border: none;
 	background-color: #499EF3;
     color: #FFFFFF;
@@ -69,4 +75,10 @@ body {
 .submit-button:hover  {
 	cursor: pointer;
 	cursor: hand;
+}
+.map-button {
+    margin-left: 49px;
+    border-style: groove;
+    width: 556px;
+    height: 51px;
 }

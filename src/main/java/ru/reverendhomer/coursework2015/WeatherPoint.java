@@ -41,7 +41,7 @@ public class WeatherPoint /* implements DeferredTask */{
             }
             point.setProperty("temperaturesList", weatherList);
             datastore.put(point);
-            System.out.println("New temperature add to list.");
+            log("New temperature add to list.");
         }
         */
 }
